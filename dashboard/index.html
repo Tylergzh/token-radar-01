@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Radar</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="radar-mark">
+      <div class="circle c1"></div>
+      <div class="circle c2"></div>
+      <div class="circle c3"></div>
+      <div class="sweep"></div>
+    </div>
+    <div class="logo">Token Radar</div>
+    <div id="snapshot-meta" class="meta-text">Loading snapshot...</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Token Radar</h1>
+      <p id="methodology" class="methodology"></p>
+    </section>
+
+    <section id="tiles" class="tiles-grid">
+      <div class="tile" data-id="watchlist">
+        <span class="label">Watchlist</span>
+        <span class="value" id="tile-watchlist">0/40</span>
+      </div>
+      <div class="tile" data-id="board">
+        <span class="label">Board Rows</span>
+        <span class="value" id="tile-board">0</span>
+      </div>
+      <div class="tile" data-id="early">
+        <span class="label">Early</span>
+        <span class="value" id="tile-early">0</span>
+      </div>
+      <div class="tile" data-id="live">
+        <span class="label">Live</span>
+        <span class="value" id="tile-live">0</span>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search protocol, category, chain...">
+      </div>
+      <div class="filters">
+        <select id="category-filter">
+          <option value="">All Categories</option>
+        </select>
+        <select id="chain-filter">
+          <option value="">All Chains</option>
+        </select>
+        <label class="toggle">
+          <input type="checkbox" id="watchlist-only">
+          <span class="toggle-label">Watchlist Only</span>
+        </label>
+      </div>
+      <div class="tabs">
+        <button id="tab-pretoken" class="tab active">Pre-token</button>
+        <button id="tab-live" class="tab">Live</button>
+      </div>
+      <div class="pagination">
+        <span id="row-count">Showing 0 of 0</span>
+        <button id="show-all-btn">Show all</button>
+      </div>
+    </section>
+
+    <section class="table-container">
+      <table id="radar-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Protocol</th>
+            <th>TVL</th>
+            <th>7d</th>
+            <th>Age</th>
+            <th>Implied Value</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="model-panel" class="model-panel">
+      <h2>Value Model</h2>
+      <div class="formula-box">
+        <code id="model-formula"></code>
+      </div>
+      <div class="factors-container">
+        <table id="factors-table">
+          <thead>
+            <tr><th>Category</th><th>n</th><th>Factor</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="calibration-note" class="note"></div>
+      <div id="disclaimer" class="disclaimer"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="source">Data source: DefiLlama</div>
+    <div id="footer-time" class="time"></div>
+    <div class="tagline">records no token, never has none</div>
+  </footer>
+
+  <div id="detail-panel" class="detail-panel">
+    <button id="close-detail" class="close-btn">&times;</button>
+    <div id="detail-content"></div>
+  </div>
+
+  <script src="../data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
