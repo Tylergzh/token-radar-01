@@ -2,13 +2,16 @@ import { parseSnapshot, impliedValue, isPreToken, isRankable, buildBoard, farmSt
 import { buildDossier } from './vendor/makefun-board.ts';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
 
 async function main() {
   const args = process.argv.slice(2);
   const inputArg = args.find(a => a.startsWith('--input='))?.split('=')[1] || 
                    (args.indexOf('--input') !== -1 ? args[args.indexOf('--input') + 1] : '/input');
   
-  const snapshotPath = inputArg;
+  const snapshotPath = inputArg.endsWith('.json') ? inputArg : path.join(inputArg, 'snapshot.json');
   const outputDir = process.env.MAKEFUN_OUTPUT_DIR || './output';
   
   if (!fs.existsSync(snapshotPath)) {
@@ -32,7 +35,7 @@ async function main() {
 
   const assets = ['dashboard', 'screenshots'];
   for (const asset of assets) {
-    const src = path.join(process.cwd(), asset);
+    const src = path.join(here, asset);
     const dest = path.join(outputDir, asset);
     if (fs.existsSync(src)) {
       fs.mkdirSync(dest, { recursive: true });
@@ -44,7 +47,7 @@ async function main() {
   }
 
   const dossier = buildDossier(outputDir, { text_max_bytes: 65536 });
-  fs.writeFileSync(path.join(outputDir, 'dossier.json'), JSON.stringify(dossier, null, 2));
+  fs.writeFileSync(path.join(outputDir, 'dossier.json'), dossier);
 }
 
 main().catch(err => {

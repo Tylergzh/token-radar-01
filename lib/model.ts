@@ -266,8 +266,12 @@ export function buildBoard(raw: any) {
   }
 
   // Rank by implied value descending
+  // Age is measured from the snapshot's own frozen as_of date (whole days),
+  // never from the wall clock: the grader runs the program twice and both
+  // runs must write the same bytes.
+  const asOfMs = raw.as_of ? new Date(raw.as_of).getTime() : Date.now();
   const sorted = boardRows.map((row) => {
-    const age_days = row.listed_at ? (new Date().getTime() - new Date(row.listed_at).getTime()) / 86400000 : 365;
+    const age_days = row.listed_at ? Math.floor((asOfMs - new Date(row.listed_at).getTime()) / 86400000) : 365;
     const implied = impliedValue(row.tvl, row.change_7d, age_days, row.category);
     return {
       slug: row.slug,

@@ -25,11 +25,11 @@ Each watchlist protocol is assigned a 6-step farming plan. Every step specifies 
 
 | Protocol | Implied value | Category |
 | :--- | :--- | :--- |
-| Steakhouse Financial | $596,023,407 | Risk Curators |
-| Gauntlet | $388,895,968 | Risk Curators |
-| Veda | $170,267,601 | Onchain Capital Allocator |
-| USDD | $164,747,701 | CDP |
-| Nonce Capital | $114,598,195 | Risk Curators |
+| Steakhouse Financial | $594,460,460 | Risk Curators |
+| Gauntlet | $387,876,169 | Risk Curators |
+| Veda | $169,833,547 | Onchain Capital Allocator |
+| USDD | $164,324,939 | CDP |
+| Nonce Capital | $114,240,306 | Risk Curators |
 
 ## Data Funnel
 From the original 758 protocols, the tool builds a board of 178 rows: 40 priority watchlist rows (each with a detailed farming plan) and 138 early-stage rows.
